@@ -10,7 +10,7 @@ package kit.edu.informatik.u2.a;
  */
 public class FoodCounter {
     String name;
-    boolean isForTakeAway; // if false then it is to consume "at site"
+    boolean isForTakeAway; // if false then it is to consume "on site".
     Time openingTime;
     Time closingTime;
     Meal meal1;

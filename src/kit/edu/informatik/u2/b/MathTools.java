@@ -10,14 +10,14 @@ public final class MathTools {
     /**
      * Private constructor to prevent instantiation
      */
-    private MathTools(){}
+    private MathTools() {}
 
     /**
      * B.1: approximates Euler's numbers.
      * @param n: a positive integer that serves as the upper bound of summation.
      * @return an approximation of Euler's number.
      */
-    public static double euler(int n){
+    public static double euler(int n) {
         double sum = 0; // declaring a double variable which will store the value of "e".
 
         // The outer for-loop does the summation of the sequence "1/i!".
@@ -38,7 +38,7 @@ public final class MathTools {
      * @param n: a positive integer, we want to know whether it is prime or not.
      * @return whether the statement "n is prime a number" is a true or a false one.
      */
-    public static boolean isPrime(int n){
+    public static boolean isPrime (int n){
         boolean nIsPrime = true; //declaring a boolean variable and assigning it as true by default.
 
         for (int i = 2; i < n; i++) {

@@ -10,7 +10,10 @@ package kit.edu.informatik.u2.a;
 public class Meal {
     String name;
     double price; // is given in €
+
+    // Every meal contains pork by default, unless specified otherwise,
+    // since boolean values are initialized with the default value 'false'.
     boolean isVegan;
     boolean isVegetarian;
-    boolean isPork; // if false, then it is beef
+    boolean isBeef; // if false, then it is pork
 }
