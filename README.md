@@ -1,1 +1,1 @@
-# Java assignments for the programming course at KIT.
+Java assignments for the programming course at KIT.
