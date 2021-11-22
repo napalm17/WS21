@@ -21,7 +21,6 @@ public final class PasswordTools {
      * @return a password that was generated out of a given sentence
      */
     public static String generateFromSentence(String sentence, int minLength) {
-        final char space = ' ';
 
         // Every password starts with the first letter of the first word of the sentence.
         String password  = String.valueOf(sentence.charAt(0));
@@ -29,15 +28,18 @@ public final class PasswordTools {
         /* Goes through all characters in the given sentence, if the character is a space,
            then the subsequent one must be the first letter of a word in the sentence. */
         for (int i = 0; i < sentence.length(); i++) {
-            if (sentence.charAt(i) == space) {
+            if (sentence.charAt(i) == ' ') {
                 char theFirstLetterOfAWord = sentence.charAt(i + 1);
 
                 // The first letter of every word in the sentence is concatenated to the end of the password.
                 password = password.concat(String.valueOf(theFirstLetterOfAWord));
             }
         }
+        return passwordExtender(password, minLength);
+    }
 
-        // The password is extended, until it reaches the minimum password length.
+    // A private helper method that extends the password -if necessary-, until it reaches the minimum password length.
+    private static String passwordExtender(String password, int minLength) {
         int i = 0;
         while (password.length() < minLength) {
             password = password.concat(String.valueOf(password.charAt(i)));
@@ -58,37 +60,31 @@ public final class PasswordTools {
         String symbols = "$#?!_-=%";
 
         for (int i = 0; i < password.length(); i++) {
-            boolean isLetter = false;
 
             // If the current character's ASCII code is between that of 'a' and 'z', then it must be a small letter.
-            if ('a' <= password.charAt(i) && password.charAt(i) <= 'z') {
-                hasSmallLetter = true;
-                isLetter = true;
-            }
+            hasSmallLetter = isInBetween('a', 'z', password.charAt(i));
 
-            // Analogous to the if-condition above but for large letters.
-            else if ('A' <= password.charAt(i) && password.charAt(i) <= 'Z') {
-                hasLargeLetter = true;
-                isLetter = true;
-            }
+            // Analogous to the one above but for large letters.
+            hasLargeLetter = isInBetween('A', 'Z', password.charAt(i));
 
-            /* Checks -in case the current character is a small/large letter-,
+            /* Checks -in case the current character is a small or large letter-,
                whether the subsequent letter's ASCII code is between that of '0' and '9'. */
-            if (isLetter && ('0' <= password.charAt(i + 1) && password.charAt(i + 1) <= '9')) {
-                hasNumberAfterLetter = true;
-            }
+            hasNumberAfterLetter = (hasLargeLetter || hasSmallLetter) && isInBetween('0', '9', password.charAt(i));
 
             // Checks whether the current character is one of the symbols $#?!_-=%.
-            else{
-                for (int j = 0; j < symbols.length(); j++) {
-                    if (password.charAt(i) == symbols.charAt(j)){
-                        hasSymbol = true;
-                        break;
-                    }
+            for (int j = 0; j < symbols.length(); j++) {
+                if (password.charAt(i) == symbols.charAt(j)){
+                    hasSymbol = true;
+                    break;
                 }
             }
         }
         return hasSmallLetter && hasLargeLetter && hasNumberAfterLetter && hasSymbol;
+    }
+
+    // A private helper method to find out if character's ascii code is in between another two.
+    private static boolean isInBetween(char startChar, char endChar, char myChar) {
+        return startChar <= myChar && myChar <= endChar;
     }
 
     /**
