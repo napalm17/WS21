@@ -12,5 +12,7 @@ public class FoodCounter {
     boolean isForTakeAway; // if false then it is to consume "at site"
     Time openingTime;
     Time closingTime;
-    Meal meal;
+    Meal meal1;
+    Meal meal2;
+    Meal meal3;
 }
