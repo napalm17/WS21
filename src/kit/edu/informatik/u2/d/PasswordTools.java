@@ -16,9 +16,9 @@ public final class PasswordTools {
      * Static method for task D.1:
      * Generates a password with a minimum length from the first letter of every word in a given sentence, if the password is too short
      * then the letters in the password are again concatenated to the end of the password until it reaches the minimum length required.
-     * @param sentence the given sentence out of which the password is to be generated
+     * @param sentence a given sentence out of which the password is to be generated
      * @param minLength the minimum length of the to-be-generated password
-     * @return a password that was generated out of a given sentence
+     * @return a password that was generated out of a given sentence (and was extended if necessary).
      */
     public static String generateFromSentence(String sentence, int minLength) {
 
@@ -38,7 +38,14 @@ public final class PasswordTools {
         return passwordExtender(password, minLength);
     }
 
-    // A private helper method that extends the password -if necessary-, until it reaches the minimum password length.
+    /**
+     * A private helper method for Task D.1:
+     * The method extends the password -if necessary-, until it reaches the minimum password length.
+     * @param password a password which is to be extended(if necessary!)
+     * @param minLength required minimum length of the password
+     * @return the extended password
+     */
+    //
     private static String passwordExtender(String password, int minLength) {
         int i = 0;
         while (password.length() < minLength) {
@@ -82,7 +89,14 @@ public final class PasswordTools {
         return hasSmallLetter && hasLargeLetter && hasNumberAfterLetter && hasSymbol;
     }
 
-    // A private helper method to find out if character's ascii code is in between another two.
+    /**
+     * A private helper method for Task D.1:
+     * The method finds out if character's ascii code is in between another two.
+     * @param startChar The lower bound in ascii table
+     * @param endChar The upper bound in ascii table
+     * @param myChar the character whose position in the ascii table is to be checked
+     * @return whether the given character lies between the two given bounds
+     */
     private static boolean isInBetween(char startChar, char endChar, char myChar) {
         return startChar <= myChar && myChar <= endChar;
     }
@@ -97,6 +111,7 @@ public final class PasswordTools {
 
         // If password is blank-space, it's automatically considered to be leaked.
         if (password.equals("")) return true;
+
         boolean isLeaked = false;
 
         // isLeaked is set to true, if the first letter of the password is found in the leaked dataset.
