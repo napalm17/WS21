@@ -1,4 +1,4 @@
-package u1.D;
+package u1.d;
 
 public class VehicleBody {
     int weight;

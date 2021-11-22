@@ -1,4 +1,4 @@
-package u1.B;
+package u1.b;
 import java.util.Scanner;
 
 public final class Main {

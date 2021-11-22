@@ -1,4 +1,4 @@
-package u1.C;
+package u1.c;
 
 public class Cone {
     Circle base;
