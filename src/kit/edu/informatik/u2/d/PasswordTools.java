@@ -68,16 +68,19 @@ public final class PasswordTools {
 
         for (int i = 0; i < password.length(); i++) {
 
+            /* Checks -in case the previous character was a small or a large letter-
+            whether the current letter's ASCII code is between that of '0' and '9'. */
+            if ((hasLargeLetter || hasSmallLetter) && isInBetween('0', '9', password.charAt(i))) {
+                hasNumberAfterLetter = true;
+            }
             // If the current character's ASCII code is between that of 'a' and 'z', then it must be a small letter.
-            hasSmallLetter = isInBetween('a', 'z', password.charAt(i));
-
+            else if (isInBetween('a', 'z', password.charAt(i))) {
+                hasSmallLetter = true;
+            }
             // Analogous to the one above but for large letters.
-            hasLargeLetter = isInBetween('A', 'Z', password.charAt(i));
-
-            /* Checks -in case the current character is a small or large letter-,
-               whether the subsequent letter's ASCII code is between that of '0' and '9'. */
-            hasNumberAfterLetter = (hasLargeLetter || hasSmallLetter) && isInBetween('0', '9', password.charAt(i));
-
+            else if (isInBetween('A', 'Z', password.charAt(i))) {
+                hasLargeLetter = true;
+            }
             // Checks whether the current character is one of the symbols $#?!_-=%.
             for (int j = 0; j < symbols.length(); j++) {
                 if (password.charAt(i) == symbols.charAt(j)){
@@ -86,11 +89,12 @@ public final class PasswordTools {
                 }
             }
         }
+
         return hasSmallLetter && hasLargeLetter && hasNumberAfterLetter && hasSymbol;
     }
 
     /**
-     * A private helper method for Task D.1:
+     * A private helper method for Task D.2:
      * The method finds out if character's ascii code is in between another two.
      * @param startChar The lower bound in ascii table
      * @param endChar The upper bound in ascii table
