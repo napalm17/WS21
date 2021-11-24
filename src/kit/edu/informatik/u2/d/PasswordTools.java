@@ -64,7 +64,7 @@ public final class PasswordTools {
     public static boolean checkPassword(String password) {
         boolean hasSmallLetter = false; boolean hasLargeLetter = false;
         boolean hasNumberAfterLetter = false; boolean hasSymbol = false;
-        int indexLetter = -2; // this variable will save the index of the last letter in the password.
+        int indexLetter = password.length(); // This variable will later save the index of the last letter in the password.
         String symbols = "$#?!_-=%";
 
         for (int i = 0; i < password.length(); i++) {
@@ -80,16 +80,15 @@ public final class PasswordTools {
                 hasLargeLetter = true;
                 indexLetter = i;
             }
-
             /* Checks -in case the previous character was a letter-
             whether the current letter's ASCII code is between that of '0' and '9'. */
-            if (i == indexLetter + 1 && isInBetween('0', '9', currentChar)) {
+            else if (i == indexLetter + 1 && isInBetween('0', '9', currentChar)) {
                 hasNumberAfterLetter = true;
             }
 
             // Checks whether the current character is one of the symbols $#?!_-=%.
             for (int j = 0; j < symbols.length(); j++) {
-                if (password.charAt(i) == symbols.charAt(j)){
+                if (currentChar == symbols.charAt(j)){
                     hasSymbol = true;
                     break;
                 }
