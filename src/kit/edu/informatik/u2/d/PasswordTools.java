@@ -90,7 +90,6 @@ public final class PasswordTools {
                 }
             }
         }
-
         return hasSmallLetter && hasLargeLetter && hasNumberAfterLetter && hasSymbol;
     }
 
