@@ -80,6 +80,7 @@ public final class PasswordTools {
             // Analogous to the one above but for large letters.
             else if (isInBetween('A', 'Z', password.charAt(i))) {
                 hasLargeLetter = true;
+                continue;
             }
             // Checks whether the current character is one of the symbols $#?!_-=%.
             for (int j = 0; j < symbols.length(); j++) {
