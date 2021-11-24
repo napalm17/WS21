@@ -64,24 +64,29 @@ public final class PasswordTools {
     public static boolean checkPassword(String password) {
         boolean hasSmallLetter = false; boolean hasLargeLetter = false;
         boolean hasNumberAfterLetter = false; boolean hasSymbol = false;
+        int indexLetter = -2; // this variable will save the index of the last letter in the password.
         String symbols = "$#?!_-=%";
 
         for (int i = 0; i < password.length(); i++) {
+            char currentChar = password.charAt(i);
 
-            /* Checks -in case the previous character was a small or a large letter-
-            whether the current letter's ASCII code is between that of '0' and '9'. */
-            if ((hasLargeLetter || hasSmallLetter) && isInBetween('0', '9', password.charAt(i))) {
-                hasNumberAfterLetter = true;
-            }
             // If the current character's ASCII code is between that of 'a' and 'z', then it must be a small letter.
-            else if (isInBetween('a', 'z', password.charAt(i))) {
+            if (isInBetween('a', 'z', currentChar)) {
                 hasSmallLetter = true;
+                indexLetter = i;
             }
             // Analogous to the one above but for large letters.
-            else if (isInBetween('A', 'Z', password.charAt(i))) {
+            else if (isInBetween('A', 'Z', currentChar)) {
                 hasLargeLetter = true;
-                continue;
+                indexLetter = i;
             }
+
+            /* Checks -in case the previous character was a letter-
+            whether the current letter's ASCII code is between that of '0' and '9'. */
+            if (i == indexLetter + 1 && isInBetween('0', '9', currentChar)) {
+                hasNumberAfterLetter = true;
+            }
+
             // Checks whether the current character is one of the symbols $#?!_-=%.
             for (int j = 0; j < symbols.length(); j++) {
                 if (password.charAt(i) == symbols.charAt(j)){
