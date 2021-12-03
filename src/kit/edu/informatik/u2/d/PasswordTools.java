@@ -127,8 +127,10 @@ public final class PasswordTools {
             if (leakedDataset.charAt(i) == password.charAt(0)){
                 isLeaked = true;
 
+
                 // isLeaked is set to false again, if the character sequence in the leaked dataset doesn't exactly match the given password.
                 for (int j = 1; j < password.length(); j++) {
+                    System.out.println(password.charAt(j));
                     if (leakedDataset.charAt(i + j) != password.charAt(j)) {
                         isLeaked = false;
                         break;
