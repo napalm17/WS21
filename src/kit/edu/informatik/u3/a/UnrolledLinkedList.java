@@ -1,4 +1,4 @@
-package kit.edu.informatik.u3;
+package kit.edu.informatik.u3.a;
 
 public class UnrolledLinkedList {
     private int arraySize;
