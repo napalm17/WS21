@@ -10,17 +10,16 @@ public class Event {
     private int date;
     private int id;
 
-    public Event (int lecturerId, String location, int capacity, boolean is3G, int date) {
+    public Event (int id, int lecturerId, String location, int capacity, boolean is3G, int date) {
         this.lecturerId = lecturerId;
         this.location = location;
         this.capacity = capacity;
         this.is3G = is3G;
         this.date = date;
+        this.id = id;
         this.NUMBER_OF_PARTICIPANTS++;
     }
-    public void setID (int id) {
-        this.id = id;
-    }
+
     public int getId() {
         return this.id;
     }

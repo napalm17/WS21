@@ -3,8 +3,8 @@ package kit.edu.informatik.u3.b;
 public class Program {
 
     private int date;
-    private int PERSON_INDEX = 0;
-    private int EVENT_INDEX = 0;
+    private static int PERSON_INDEX = 0;
+    private static int EVENT_INDEX = 0;
 
 
     private class ListCell {
@@ -31,17 +31,15 @@ public class Program {
     // B.2.2
     public int addPerson(String role, String firstName, String lastName) {
         Item item = new Item();
-        item.person = new Person(firstName, lastName, Person.Role.valueOf(role.toUpperCase()));
-        item.person.setID(PERSON_INDEX);
+        item.person = new Person(Program.PERSON_INDEX, firstName, lastName, Person.Role.valueOf(role.toUpperCase()));
         ListCell newListCell = new ListCell(item, this.lastPerson, null);
-
         if (this.firstPerson == null) {
             this.firstPerson = newListCell;
         } else {
             this.lastPerson.next = newListCell;
         }
         this.lastPerson = newListCell;
-        PERSON_INDEX++;
+        Program.PERSON_INDEX++;
         return item.person.getID();
     }
     // B.2.3
@@ -86,8 +84,7 @@ public class Program {
     public int addEvent (int personId, String location, int capacity, String regulationType, int date) {
 
         Item item = new Item();
-        item.event = new Event(personId, location, capacity, regulationType == "3G", date);
-        item.event.setID(EVENT_INDEX);
+        item.event = new Event(Program.EVENT_INDEX, personId, location, capacity, regulationType.equals("3G"), date);
         ListCell newListCell = new ListCell(item, this.lastEvent, null);
 
         if (this.firstEvent == null) {
@@ -96,7 +93,7 @@ public class Program {
             this.lastEvent.next = newListCell;
         }
         this.lastEvent = newListCell;
-        EVENT_INDEX++;
+        Program.EVENT_INDEX++;
         return item.event.getId();
     }
 

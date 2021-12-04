@@ -20,14 +20,12 @@ public class Person {
     private int proofdate;
     private CovidProof covidProof;
 
-    public Person (String firstName, String lastName, Role role) {
+    public Person (int id, String firstName, String lastName, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
-        this.covidProof = CovidProof.NO_CERTIFICATE;
-    }
-    public void setID (int id) {
         this.id = id;
+        this.covidProof = CovidProof.NO_CERTIFICATE;
     }
     public int getID () {
         return this.id;

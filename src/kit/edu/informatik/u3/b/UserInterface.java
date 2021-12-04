@@ -12,7 +12,6 @@ public class UserInterface {
             if (command.equals("quit")) {
                 break;
             }
-
             String[] params = input[1].split(";");
             switch (command) {
                 case "set-date" -> System.out.println(program.setDate(Integer.parseInt(params[0])));
