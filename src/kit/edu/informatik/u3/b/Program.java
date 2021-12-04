@@ -2,11 +2,9 @@ package kit.edu.informatik.u3.b;
 
 public class Program {
 
-    private int date;
+    private int date = 0;
     private static int PERSON_INDEX = 0;
     private static int EVENT_INDEX = 0;
-
-
     private class ListCell {
         private Item item;
         ListCell prev;
@@ -44,27 +42,14 @@ public class Program {
     }
     // B.2.3
     public String addCertificate (int personId, String proof, int date) {
-        ListCell c = this.firstPerson;
-        while (c != null) {
-            if (c.item.person.getID() == personId) {
-                c.item.person.setCertificate(proof, date);
-                return "OK";
-            }
-            c = c.next;
-        }
-        return "Couldn't find person with the id number: " + personId;
+        Person p = getPersonfromId(personId);
+        p.setCertificate(proof, date);
+        return "OK";
     }
-
     // B.2.4
     public String printPerson (int personId) {
-        ListCell c = this.firstPerson;
-        while (c != null) {
-            if (c.item.person.getID() == personId) {
-                return c.item.person.getFullInfo();
-            }
-            c = c.next;
-        }
-        return "Couldn't find person with the id number: " + personId;
+        Person p = getPersonfromId(personId);
+        return p.getFullInfo();
     }
     // B.2.5
     public String printPeople (String role) {
@@ -82,11 +67,9 @@ public class Program {
     // B.2.6
 
     public int addEvent (int personId, String location, int capacity, String regulationType, int date) {
-
         Item item = new Item();
         item.event = new Event(Program.EVENT_INDEX, personId, location, capacity, regulationType.equals("3G"), date);
         ListCell newListCell = new ListCell(item, this.lastEvent, null);
-
         if (this.firstEvent == null) {
             this.firstEvent = newListCell;
         } else {
@@ -99,43 +82,19 @@ public class Program {
 
     // B.2.7
     public String increaseSecurity (int eventId, int personId) {
-        ListCell c1 = this.firstPerson;
-        while (c1 != null) {
-            if (c1.item.person.getID() == personId) {
-                break;
-            }
-            c1 = c1.next;
-        }
-        ListCell c2 = this.firstEvent;
-        while (c2 != null) {
-            if (c2.item.event.getId() == eventId) {
-                break;
-            }
-            c2 = c2.next;
-        }
-        if (hasPermission(c1.item.person.getProoftype(), c1.item.person.getProofdate(), c2.item.event.getDate(), c2.item.event.is3G())
-                && c2.item.event.getRemaining() > 0) {
+        Event e = getEventfromId(eventId);
+        if (canAddtoEvent(eventId, personId)) {
+            e.addParticipant(personId);
             return "OK";
         }
         return "Could not add security";
     }
-
-
     // B.2.8
     public String bookSpot (int eventId, int personId) {
-        ListCell c1 = this.firstPerson;
-        while (c1 != null) {
-            if (c1.item.person.getID() == personId) {
-                break;
-            }
-            c1 = c1.next;
-        }
-        ListCell c2 = this.firstEvent;
-        while (c2 != null) {
-            if (c2.item.event.getId() == eventId) {
-                break;
-            }
-            c2 = c2.next;
+        Event e = getEventfromId(eventId);
+        if (canAddtoEvent(eventId, personId)) {
+            e.addParticipant(personId);
+            return e.getRemaining() + " spot(s) left";
         }
         return "Could not book spot";
     }
@@ -144,19 +103,34 @@ public class Program {
         return "ok";
     }
 
-    private boolean hasPermission (String proofType, int proofDate, int eventDate, boolean isEvent3G) {
-        switch (proofType) {
-            case "TESTED":
-                if (isEvent3G) {
-                    return eventDate == proofDate;
-                } else return false;
-            case "RECOVERED":
-                return eventDate - proofDate < 180;
-            case "VACCINATED":
-                return true;
-            default:
-                return false; // the person has no certificate
+
+
+    // helper methods
+    private boolean canAddtoEvent(int personId, int eventId) {
+        Person p = getPersonfromId(personId);
+        Event e = getEventfromId(eventId);
+        return Utility.hasPermission(p.getProoftype(), p.getProofdate(), e.getDate(), e.is3G())
+                && e.getRemaining() > 0 && !(Utility.isInEvent(personId, e.getParticipants()));
+    }
+    public Person getPersonfromId(int personId) {
+        ListCell c = this.firstPerson;
+        while (c != null) {
+            if (c.item.person.getID() == personId) {
+                break;
+            }
+            c = c.next;
         }
+        return c.item.person;
+    }
+    public Event getEventfromId(int eventId) {
+        ListCell c = this.firstEvent;
+        while (c != null) {
+            if (c.item.event.getId() == eventId) {
+                break;
+            }
+            c = c.next;
+        }
+        return c.item.event;
     }
 }
 

@@ -9,6 +9,7 @@ public class Event {
     private boolean is3G;
     private int date;
     private int id;
+    private int[] participants;
 
     public Event (int id, int lecturerId, String location, int capacity, boolean is3G, int date) {
         this.lecturerId = lecturerId;
@@ -17,9 +18,16 @@ public class Event {
         this.is3G = is3G;
         this.date = date;
         this.id = id;
+        this.participants = new int[capacity];
+        this.participants[this.NUMBER_OF_PARTICIPANTS] = lecturerId;
         this.NUMBER_OF_PARTICIPANTS++;
     }
-
+    public void addParticipant(int personId) {
+        this.participants[this.NUMBER_OF_PARTICIPANTS] = personId;
+    }
+    public int[] getParticipants() {
+        return this.participants;
+    }
     public int getId() {
         return this.id;
     }
