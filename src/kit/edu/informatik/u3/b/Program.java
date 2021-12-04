@@ -100,10 +100,17 @@ public class Program {
     }
     // B.2.9
     public String reportCase (int personId) {
-        return "ok";
+        String result = "";
+        for (int i = 0; i <= this.lastEvent.item.event.getId(); i++) {
+            int[] participants = getEventfromId(i).getParticipants();
+            if (Utility.isInEvent(personId, participants)) {
+                for (int p : participants) {
+                    result += getPersonfromId(p).getFullInfo() + "\n";
+                }
+            }
+        }
+        return result;
     }
-
-
 
     // helper methods
     private boolean canAddtoEvent(int personId, int eventId) {
