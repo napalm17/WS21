@@ -1,4 +1,4 @@
-package kit.edu.informatik.u3;
+package kit.edu.informatik.u3.a;
 
 /**
  * Class for Task B
