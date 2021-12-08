@@ -5,24 +5,24 @@ import kit.edu.informatik.u3.b.ListModeling.ListCell;
 public class PersonManagement {
     private int date = 0;
     private static int PERSON_INDEX = 0;
-    private ListCell firstPerson;
-    private ListCell lastPerson;
+    private ListCell first;
+    private ListCell last;
 
     public PersonManagement() {
-        this.firstPerson = null;
-        this.lastPerson = null;
+        this.first = null;
+        this.last = null;
     }
     // B.2.2
     public int addPerson(String role, String firstName, String lastName) {
         Person person = new Person(PERSON_INDEX, firstName, lastName, Person.Role.valueOf(role.toUpperCase()));
-        ListCell newListCell = new ListCell(person, null, this.lastPerson, null);
+        ListCell newListCell = new ListCell(person, null, this.last, null);
 
-        if (this.firstPerson == null) {
-            this.firstPerson = newListCell;
+        if (this.first == null) {
+            this.first = newListCell;
         } else {
-            this.lastPerson.next = newListCell;
+            this.last.next = newListCell;
         }
-        this.lastPerson = newListCell;
+        this.last = newListCell;
         PERSON_INDEX++;
         return person.getId();
     }
@@ -40,7 +40,7 @@ public class PersonManagement {
     // B.2.5
     public String printPeople (String role) {
         String result = "ad";
-        ListCell c = this.firstPerson;
+        ListCell c = this.first;
         while (c != null) {
             if (c.person.getRole().equals(role)) {
                 result += c.person.getFullInfo() + "\n";
@@ -51,13 +51,13 @@ public class PersonManagement {
     }
     // helper method
     public Person getPersonfromId(int personId) {
-        ListCell c = this.firstPerson;
+        ListCell c = this.first;
         while (c != null) {
             if (c.person.getId() == personId) {
                 return c.person;
             }
             c = c.next;
         }
-        return this.lastPerson.person;
+        return this.last.person;
     }
 }

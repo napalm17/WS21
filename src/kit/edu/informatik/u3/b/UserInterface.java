@@ -3,8 +3,9 @@ package kit.edu.informatik.u3.b;
 
 import kit.edu.informatik.u3.b.EventRelated.EventManagement;
 import kit.edu.informatik.u3.b.PersonRelated.PersonManagement;
-
 import java.util.Scanner;
+
+import static java.lang.Integer.parseInt;
 
 public class UserInterface {
     public void run() {
@@ -22,16 +23,32 @@ public class UserInterface {
                 params = input[1].split(";");
             }
             switch (command) {
-                // case "set-date" -> System.out.println(program.setDate(Integer.parseInt(params[0])));
-                case "add-person" -> System.out.println(pM.addPerson(params[0], params[1], params[2]));
-                case "add-certificate" -> System.out.println(pM.addCertificate(Integer.parseInt(params[0]), params[1], Integer.parseInt(params[2])));
-                case "print-person" -> System.out.println(pM.printPerson(Integer.parseInt(params[0])));
-                case "print-people" -> System.out.println(pM.printPeople(params[0]));
-                case "add-event" -> System.out.println(eM.addEvent(Integer.parseInt(params[0]), params[1], Integer.parseInt(params[2]), params[3], Integer.parseInt(params[4])));
-                case "increase-security" -> System.out.println(eAPM.increaseSecurity(Integer.parseInt(params[0]), Integer.parseInt(params[1])));
-                case "book-spot" -> System.out.println(eAPM.bookSpot(Integer.parseInt(params[0]), Integer.parseInt(params[1])));
+                // case "set-date" -> System.out.println(program.setDate(parseInt(params[0])));
+                case "add-person":
+                    System.out.println(pM.addPerson(params[0], params[1], params[2]));
+                    break;
+                case "add-certificate":
+                    System.out.println(pM.addCertificate(parseInt(params[0]), params[1], parseInt(params[2])));
+                    break;
+                case "print-person":
+                    System.out.println(pM.printPerson(parseInt(params[0])));
+                    break;
+                case "print-people":
+                    System.out.println(pM.printPeople(params[0]));
+                    break;
+                case "add-event":
+                    System.out.println(eM.addEvent(parseInt(params[0]), params[1], parseInt(params[2]), params[3], parseInt(params[4])));
+                    break;
+                case "increase-security":
+                    System.out.println(eAPM.increaseSecurity(parseInt(params[0]), parseInt(params[1])));
+                    break;
+                case "book-spot":
+                    System.out.println(eAPM.bookSpot(parseInt(params[0]), parseInt(params[1])));
+                    break;
                 // case "report-case" -> System.out.println(program.reportCase(Integer.parseInt(params[0])));
-                case "quit" -> isCommandQuit = true;
+                case "quit":
+                    isCommandQuit = true;
+                    break;
             }
         }
         scanner.close();
