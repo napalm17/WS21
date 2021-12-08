@@ -1,10 +1,8 @@
 package kit.edu.informatik.u3.b;
-
 import kit.edu.informatik.u3.b.EventRelated.Event;
 import kit.edu.informatik.u3.b.EventRelated.EventManagement;
 import kit.edu.informatik.u3.b.PersonRelated.Person;
 import kit.edu.informatik.u3.b.PersonRelated.PersonManagement;
-
 
 public class EventAndPersonManagement {
     EventManagement eventManagement;
@@ -35,8 +33,6 @@ public class EventAndPersonManagement {
     private boolean canAddtoEvent(int eventId, int personId) {
         Person p = this.personManagement.getPersonfromId(personId);
         Event e = this.eventManagement.getEventfromId(eventId);
-        System.out.println(Utility.hasPermission(p.getProoftype(), p.getProofdate(), e.getDate(), e.is3G()));
-        System.out.println(!(Utility.isInEvent(personId, e.getParticipants())));
         return Utility.hasPermission(p.getProoftype(), p.getProofdate(), e.getDate(), e.is3G())
                 && e.getRemaining() > 0 && !(Utility.isInEvent(personId, e.getParticipants()));
     }

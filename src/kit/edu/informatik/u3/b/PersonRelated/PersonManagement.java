@@ -1,5 +1,4 @@
 package kit.edu.informatik.u3.b.PersonRelated;
-
 import kit.edu.informatik.u3.b.ListModeling.ListCell;
 
 public class PersonManagement {
@@ -39,7 +38,7 @@ public class PersonManagement {
     }
     // B.2.5
     public String printPeople (String role) {
-        String result = "ad";
+        String result = "";
         ListCell c = this.first;
         while (c != null) {
             if (c.person.getRole().equals(role)) {

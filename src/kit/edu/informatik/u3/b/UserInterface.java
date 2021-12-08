@@ -1,29 +1,26 @@
 package kit.edu.informatik.u3.b;
-
-
 import kit.edu.informatik.u3.b.EventRelated.EventManagement;
 import kit.edu.informatik.u3.b.PersonRelated.PersonManagement;
 import java.util.Scanner;
-
 import static java.lang.Integer.parseInt;
 
 public class UserInterface {
     public void run() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        DateManagement dM = new DateManagement();
         PersonManagement pM = new PersonManagement();
         EventManagement eM = new EventManagement();
         EventAndPersonManagement eAPM = new EventAndPersonManagement(eM, pM);
-        String[] params = new String[0];
-        boolean isCommandQuit = false;
 
-        while (!(isCommandQuit)) {
-            String[] input = scanner.nextLine().split(" ");
+        while (true) {
+            String[] input = sc.nextLine().split(" ");
             String command = input[0];
-            if (input.length > 1) {
-                params = input[1].split(";");
-            }
+            if (command.equals("quit")) { break; }
+            String[] params = input[1].split(";");
             switch (command) {
-                // case "set-date" -> System.out.println(program.setDate(parseInt(params[0])));
+                case "set-date":
+                    System.out.println(dM.setDate(parseInt(params[0])));
+                    break;
                 case "add-person":
                     System.out.println(pM.addPerson(params[0], params[1], params[2]));
                     break;
@@ -46,11 +43,8 @@ public class UserInterface {
                     System.out.println(eAPM.bookSpot(parseInt(params[0]), parseInt(params[1])));
                     break;
                 // case "report-case" -> System.out.println(program.reportCase(Integer.parseInt(params[0])));
-                case "quit":
-                    isCommandQuit = true;
-                    break;
             }
         }
-        scanner.close();
+        sc.close();
     }
 }

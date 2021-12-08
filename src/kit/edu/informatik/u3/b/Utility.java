@@ -1,6 +1,5 @@
 package kit.edu.informatik.u3.b;
 
-
 public class Utility {
     public static final int RECOVERY_SPAN = 180;
     public static boolean hasPermission(String proofType, int proofDate, int eventDate, boolean isEvent3G) {

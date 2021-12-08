@@ -1,5 +1,4 @@
 package kit.edu.informatik.u3.b.EventRelated;
-
 import kit.edu.informatik.u3.b.ListModeling.ListCell;
 
 public class EventManagement {
