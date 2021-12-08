@@ -1,10 +1,5 @@
 package kit.edu.informatik.u3.a;
 
-import kit.edu.informatik.u3.a.UnrolledLinkedList;
-import kit.edu.informatik.u3.b.Person;
-
-import java.util.Locale;
-
 public class Main {
     public static void main(String[] args) {
         UnrolledLinkedList list1 = new UnrolledLinkedList(3);

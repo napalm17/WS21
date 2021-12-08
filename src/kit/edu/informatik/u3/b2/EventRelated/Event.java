@@ -1,7 +1,6 @@
-package kit.edu.informatik.u3.b;
+package kit.edu.informatik.u3.b2.EventRelated;
 
 public class Event {
-
     private int lecturerId;
     private String location;
     private int capacity;
@@ -11,7 +10,7 @@ public class Event {
     private int numberOfParticipants = 0;
     private int[] participants;
 
-    public Event (int id, int lecturerId, String location, int capacity, boolean is3G, int date) {
+    public Event(int id, int lecturerId, String location, int capacity, boolean is3G, int date) {
         this.lecturerId = lecturerId;
         this.location = location;
         this.capacity = capacity;
@@ -19,6 +18,9 @@ public class Event {
         this.date = date;
         this.id = id;
         this.participants = new int[capacity];
+        for (int i = 0; i < capacity ; i++) {
+            this.participants[i] = -1;
+        }
         this.participants[0] = lecturerId;
         this.numberOfParticipants++;
     }

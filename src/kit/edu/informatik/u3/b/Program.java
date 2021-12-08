@@ -1,3 +1,5 @@
+/*
+
 package kit.edu.informatik.u3.b;
 
 public class Program {
@@ -100,34 +102,57 @@ public class Program {
     }
     // B.2.9
     public String reportCase (int personId) {
-        String result = "";
+        String[] result = getContacted(personId);
+        String updated = "";
+        int i = 0;
+        while (result[i] != null) {
+            int commonEvents = 1;
+            int j = i + 1;
+            while (result[j] != null) {
+                if (result[i].equals(result[j])) {
+                    commonEvents++;
+                }
+                j++;
+            }
+            updated += result[i] + " [" + commonEvents + "]" + "\n";
+            i++;
+        }
+        return updated;
+    }
+
+    private String[] getContacted(int personId) {
+        String[] arrayWithDuplicates = new String[1000];
+        int index = 0;
         for (int i = 0; i <= this.lastEvent.item.event.getId(); i++) {
             int[] participants = getEventfromId(i).getParticipants();
             if (Utility.isInEvent(personId, participants)) {
                 for (int p : participants) {
-                    result += getPersonfromId(p).getFullInfo() + "\n";
+                    arrayWithDuplicates[index] = getPersonfromId(p).getFullInfo();
+                    index++;
                 }
             }
         }
-        return result;
+        return arrayWithDuplicates;
     }
-
     // helper methods
-    private boolean canAddtoEvent(int personId, int eventId) {
+    private boolean canAddtoEvent(int eventId, int personId) {
         Person p = getPersonfromId(personId);
         Event e = getEventfromId(eventId);
+        System.out.println(Utility.hasPermission(p.getProoftype(), p.getProofdate(), e.getDate(), e.is3G()));
+        System.out.println(!(Utility.isInEvent(personId, e.getParticipants())));
         return Utility.hasPermission(p.getProoftype(), p.getProofdate(), e.getDate(), e.is3G())
                 && e.getRemaining() > 0 && !(Utility.isInEvent(personId, e.getParticipants()));
     }
     public Person getPersonfromId(int personId) {
         ListCell c = this.firstPerson;
+        System.out.println(c.item.person.getFullInfo());
         while (c != null) {
             if (c.item.person.getID() == personId) {
-                break;
+                return c.item.person;
             }
             c = c.next;
         }
-        return c.item.person;
+        return this.firstPerson.item.person;
     }
     public Event getEventfromId(int eventId) {
         ListCell c = this.firstEvent;
@@ -141,3 +166,5 @@ public class Program {
     }
 }
 
+
+ */

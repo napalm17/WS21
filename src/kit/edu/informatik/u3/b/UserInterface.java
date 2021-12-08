@@ -1,3 +1,5 @@
+/*
+
 package kit.edu.informatik.u3.b;
 
 import java.util.Scanner;
@@ -21,8 +23,12 @@ public class UserInterface {
                 case "print-people" -> System.out.println(program.printPeople(params[0]));
                 case "add-event" -> System.out.println(program.addEvent(Integer.parseInt(params[0]), params[1], Integer.parseInt(params[2]), params[3], Integer.parseInt(params[4])));
                 case "increase-security" -> System.out.println(program.increaseSecurity(Integer.parseInt(params[0]), Integer.parseInt(params[1])));
+                case "book-spot" -> System.out.println(program.bookSpot(Integer.parseInt(params[0]), Integer.parseInt(params[1])));
+                case "report-case" -> System.out.println(program.reportCase(Integer.parseInt(params[0])));
             }
         }
         scanner.close();
     }
 }
+
+ */
