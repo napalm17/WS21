@@ -54,10 +54,10 @@ public class PersonManagement {
         ListCell c = this.firstPerson;
         while (c != null) {
             if (c.person.getId() == personId) {
-                break;
+                return c.person;
             }
             c = c.next;
         }
-        return c.person;
+        return this.lastPerson.person;
     }
 }
