@@ -1,7 +1,7 @@
-package kit.edu.informatik.u3.b.PersonRelated;
+package kit.edu.informatik.u3.b.ListItems;
 
 public class Person {
-    enum Role {
+    public enum Role {
         STUDENT,
         LECTURER,
         SECURITY

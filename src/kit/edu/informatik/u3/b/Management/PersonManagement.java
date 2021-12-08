@@ -1,5 +1,6 @@
-package kit.edu.informatik.u3.b.PersonRelated;
-import kit.edu.informatik.u3.b.ListModeling.ListCell;
+package kit.edu.informatik.u3.b.Management;
+import kit.edu.informatik.u3.b.ListCell;
+import kit.edu.informatik.u3.b.ListItems.Person;
 
 public class PersonManagement {
     private int date = 0;
@@ -27,13 +28,13 @@ public class PersonManagement {
     }
     // B.2.3
     public String addCertificate (int personId, String proof, int date) {
-        Person person = getPersonfromId(personId);
+        Person person = getPersonFromId(personId);
         person.setCertificate(proof, date);
         return "OK";
     }
     // B.2.4
     public String printPerson (int personId) {
-        Person person = getPersonfromId(personId);
+        Person person = getPersonFromId(personId);
         return person.getFullInfo();
     }
     // B.2.5
@@ -49,7 +50,7 @@ public class PersonManagement {
         return result;
     }
     // helper method
-    public Person getPersonfromId(int personId) {
+    public Person getPersonFromId(int personId) {
         ListCell c = this.first;
         while (c != null) {
             if (c.person.getId() == personId) {

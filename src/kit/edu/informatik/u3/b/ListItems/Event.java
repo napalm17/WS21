@@ -1,4 +1,4 @@
-package kit.edu.informatik.u3.b.EventRelated;
+package kit.edu.informatik.u3.b.ListItems;
 
 public class Event {
     private int lecturerId;

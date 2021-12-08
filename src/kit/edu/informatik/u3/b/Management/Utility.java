@@ -1,4 +1,4 @@
-package kit.edu.informatik.u3.b;
+package kit.edu.informatik.u3.b.Management;
 
 public class Utility {
     public static final int RECOVERY_SPAN = 180;

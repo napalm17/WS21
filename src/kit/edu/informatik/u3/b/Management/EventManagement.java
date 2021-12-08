@@ -1,5 +1,6 @@
-package kit.edu.informatik.u3.b.EventRelated;
-import kit.edu.informatik.u3.b.ListModeling.ListCell;
+package kit.edu.informatik.u3.b.Management;
+import kit.edu.informatik.u3.b.ListCell;
+import kit.edu.informatik.u3.b.ListItems.Event;
 
 public class EventManagement {
     private static int EVENT_INDEX = 0;
