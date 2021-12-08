@@ -2,6 +2,7 @@ package kit.edu.informatik.u3.b;
 
 
 public class Utility {
+    public static final int RECOVERY_SPAN = 180;
     public static boolean hasPermission(String proofType, int proofDate, int eventDate, boolean isEvent3G) {
         switch (proofType) {
             case "TESTED":
@@ -9,7 +10,7 @@ public class Utility {
                     return eventDate == proofDate;
                 } else return false;
             case "RECOVERED":
-                return eventDate - proofDate < 180;
+                return eventDate - proofDate < RECOVERY_SPAN;
             case "VACCINATED":
                 return true;
             default:
