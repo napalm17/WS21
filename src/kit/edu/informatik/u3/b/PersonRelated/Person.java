@@ -1,4 +1,4 @@
-package kit.edu.informatik.u3.b2.PersonRelated;
+package kit.edu.informatik.u3.b.PersonRelated;
 
 public class Person {
     enum Role {

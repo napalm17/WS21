@@ -1,6 +1,6 @@
-package kit.edu.informatik.u3.b2.ListModeling;
-import kit.edu.informatik.u3.b2.EventRelated.Event;
-import kit.edu.informatik.u3.b2.PersonRelated.Person;
+package kit.edu.informatik.u3.b.ListModeling;
+import kit.edu.informatik.u3.b.EventRelated.Event;
+import kit.edu.informatik.u3.b.PersonRelated.Person;
 
 public class ListCell {
     public Person person;

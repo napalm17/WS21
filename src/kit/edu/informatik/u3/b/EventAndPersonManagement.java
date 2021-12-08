@@ -1,9 +1,9 @@
-package kit.edu.informatik.u3.b2;
+package kit.edu.informatik.u3.b;
 
-import kit.edu.informatik.u3.b2.EventRelated.Event;
-import kit.edu.informatik.u3.b2.EventRelated.EventManagement;
-import kit.edu.informatik.u3.b2.PersonRelated.Person;
-import kit.edu.informatik.u3.b2.PersonRelated.PersonManagement;
+import kit.edu.informatik.u3.b.EventRelated.Event;
+import kit.edu.informatik.u3.b.EventRelated.EventManagement;
+import kit.edu.informatik.u3.b.PersonRelated.Person;
+import kit.edu.informatik.u3.b.PersonRelated.PersonManagement;
 
 
 public class EventAndPersonManagement {

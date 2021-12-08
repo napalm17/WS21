@@ -1,4 +1,4 @@
-package kit.edu.informatik.u3.b2;
+package kit.edu.informatik.u3.b;
 
 
 public class Utility {

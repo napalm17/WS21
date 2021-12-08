@@ -1,6 +1,6 @@
-package kit.edu.informatik.u3.b2.PersonRelated;
+package kit.edu.informatik.u3.b.PersonRelated;
 
-import kit.edu.informatik.u3.b2.ListModeling.ListCell;
+import kit.edu.informatik.u3.b.ListModeling.ListCell;
 
 public class PersonManagement {
     private int date = 0;
