@@ -8,14 +8,14 @@ import static java.lang.Integer.parseInt;
 
 public class UserInterface {
     public static void main(String[] args) {
-        run();
+        runUI();
     }
-    private static void run() {
+    private static void runUI() {
         Scanner sc = new Scanner(System.in);
         DateManagement dM = new DateManagement();
         PersonManagement pM = new PersonManagement();
         EventManagement eM = new EventManagement();
-        EventAndPersonManagement eAPM = new EventAndPersonManagement(eM, pM);
+        EventAndPersonManagement eAPM = new EventAndPersonManagement(eM, pM, dM);
 
         while (true) {
             String[] input = sc.nextLine().split(" ");

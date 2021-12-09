@@ -3,7 +3,6 @@ import kit.edu.informatik.u3.b.ListCell;
 import kit.edu.informatik.u3.b.ListItems.Person;
 
 public class PersonManagement {
-    private int date = 0;
     private static int PERSON_INDEX = 0;
     private ListCell first;
     private ListCell last;
@@ -59,5 +58,8 @@ public class PersonManagement {
             c = c.next;
         }
         return this.last.person;
+    }
+    public int getNumberOfPeople() {
+        return PERSON_INDEX;
     }
 }
