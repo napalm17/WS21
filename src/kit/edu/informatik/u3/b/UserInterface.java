@@ -6,7 +6,8 @@ import kit.edu.informatik.u3.b.Management.PersonManagement;
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
-public class UserInterface {
+public final class UserInterface {
+    private UserInterface () {};
     public static void main(String[] args) {
         runUI();
     }
@@ -47,7 +48,9 @@ public class UserInterface {
                 case "book-spot":
                     System.out.println(eAPM.bookSpot(parseInt(params[0]), parseInt(params[1])));
                     break;
-                // case "report-case" -> System.out.println(program.reportCase(Integer.parseInt(params[0])));
+                case "report-case":
+                    System.out.println(eAPM.reportCase(Integer.parseInt(params[0])));
+                    break;
             }
         }
         sc.close();

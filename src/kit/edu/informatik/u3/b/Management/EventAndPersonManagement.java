@@ -32,30 +32,25 @@ public class EventAndPersonManagement {
         }
         return "Could not book spot";
     }
-    private boolean canAddToEvent(int eventId, int personId) {
-        Person p = this.personManagement.getPersonFromId(personId);
-        Event e = this.eventManagement.getEventfromId(eventId);
-        return Utility.hasPermission(p.getProoftype(), p.getProofdate(), e.getDate(), e.is3G())
-                && e.getRemaining() > 0 && !(Utility.isInEvent(personId, e.getParticipants()));
-    }
     public String reportCase (int exposedPersonId) {
         Person p = this.personManagement.getPersonFromId(exposedPersonId);
         String result = "";
         for (int i = 0; i <= this.personManagement.getNumberOfPeople(); i++) {
             if (i != exposedPersonId) {
-                result += getContact(exposedPersonId, this.personManagement.getPersonFromId(i)) + "\n";
+                result += getContacted(exposedPersonId, this.personManagement.getPersonFromId(i));
             }
         }
         return result;
     }
-    public String getContact(int exposedPersonId, Person p) {
+    private String getContacted(int exposedPersonId, Person p) {
         Integer[] allEvents = p.getJoinedEvents();
         String result = "";
         int i = 0;
         int contacts = 0;
+        final int DANGER_RANGE = 14;
         while (allEvents[i] != null) {
             Event e = this.eventManagement.getEventfromId(allEvents[i]);
-            boolean isIn14DayRange = this.dateManagement.getCurrentDate() - 14 <= e.getDate() && e.getDate() <= this.dateManagement.getCurrentDate();
+            boolean isIn14DayRange = this.dateManagement.getCurrentDate() - DANGER_RANGE <= e.getDate() && e.getDate() <= this.dateManagement.getCurrentDate();
             boolean hadExposedPerson = Utility.isInEvent(exposedPersonId, e.getParticipants());
             if (isIn14DayRange && hadExposedPerson) {
                result = p.getFullInfo();
@@ -63,10 +58,15 @@ public class EventAndPersonManagement {
             }
             i++;
         }
-        if (result.equals("")) {
-            return result;
-        } else {
-            return result + " [" + contacts + " ]";
+        if (!(result.equals(""))) {
+            return result + " [" + contacts + " ]\n";
         }
+        return "";
+    }
+    private boolean canAddToEvent(int eventId, int personId) {
+        Person p = this.personManagement.getPersonFromId(personId);
+        Event e = this.eventManagement.getEventfromId(eventId);
+        return Utility.hasPermission(p.getProoftype(), p.getProofdate(), e.getDate(), e.is3G())
+                && e.getRemaining() > 0 && !(Utility.isInEvent(personId, e.getParticipants()));
     }
 }
