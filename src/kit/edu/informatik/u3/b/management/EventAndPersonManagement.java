@@ -1,6 +1,6 @@
-package kit.edu.informatik.u3.b.Management;
-import kit.edu.informatik.u3.b.ListItems.Event;
-import kit.edu.informatik.u3.b.ListItems.Person;
+package kit.edu.informatik.u3.b.management;
+import kit.edu.informatik.u3.b.listItems.Event;
+import kit.edu.informatik.u3.b.listItems.Person;
 
 public class EventAndPersonManagement {
     EventManagement eventManagement;
@@ -36,7 +36,6 @@ public class EventAndPersonManagement {
         return "Could not book spot";
     }
     public String reportCase (int exposedPersonId) {
-        Person p = this.personManagement.getPersonFromId(exposedPersonId);
         String result = "";
         for (int i = 0; i <= this.personManagement.getNumberOfPeople(); i++) {
             if (i != exposedPersonId) {

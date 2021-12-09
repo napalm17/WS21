@@ -1,8 +1,8 @@
 package kit.edu.informatik.u3.b;
-import kit.edu.informatik.u3.b.Management.EventManagement;
-import kit.edu.informatik.u3.b.Management.DateManagement;
-import kit.edu.informatik.u3.b.Management.EventAndPersonManagement;
-import kit.edu.informatik.u3.b.Management.PersonManagement;
+import kit.edu.informatik.u3.b.management.EventManagement;
+import kit.edu.informatik.u3.b.management.DateManagement;
+import kit.edu.informatik.u3.b.management.EventAndPersonManagement;
+import kit.edu.informatik.u3.b.management.PersonManagement;
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
@@ -11,6 +11,7 @@ public final class UserInterface {
     public static void main(String[] args) {
         runUI();
     }
+
     private static void runUI() {
         Scanner sc = new Scanner(System.in);
         DateManagement dM = new DateManagement();
