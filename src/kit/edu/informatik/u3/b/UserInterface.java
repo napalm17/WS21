@@ -7,7 +7,7 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public final class UserInterface {
-    private UserInterface () {};
+    private UserInterface () {}
     public static void main(String[] args) {
         runUI();
     }
