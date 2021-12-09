@@ -1,7 +1,8 @@
 package kit.edu.informatik.u3.b;
+import kit.edu.informatik.u3.b.management.CovidManagement;
 import kit.edu.informatik.u3.b.management.EventManagement;
 import kit.edu.informatik.u3.b.management.DateManagement;
-import kit.edu.informatik.u3.b.management.EventAndPersonManagement;
+import kit.edu.informatik.u3.b.management.CovidManagement;
 import kit.edu.informatik.u3.b.management.PersonManagement;
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
@@ -17,7 +18,7 @@ public final class UserInterface {
         DateManagement dM = new DateManagement();
         PersonManagement pM = new PersonManagement();
         EventManagement eM = new EventManagement();
-        EventAndPersonManagement eAPM = new EventAndPersonManagement(eM, pM, dM);
+        CovidManagement cM = new CovidManagement(eM, pM, dM);
 
         while (true) {
             String[] input = sc.nextLine().split(" ");
@@ -44,13 +45,13 @@ public final class UserInterface {
                     System.out.println(eM.addEvent(parseInt(params[0]), params[1], parseInt(params[2]), params[3], parseInt(params[4])));
                     break;
                 case "increase-security":
-                    System.out.println(eAPM.increaseSecurity(parseInt(params[0]), parseInt(params[1])));
+                    System.out.println(cM.increaseSecurity(parseInt(params[0]), parseInt(params[1])));
                     break;
                 case "book-spot":
-                    System.out.println(eAPM.bookSpot(parseInt(params[0]), parseInt(params[1])));
+                    System.out.println(cM.bookSpot(parseInt(params[0]), parseInt(params[1])));
                     break;
                 case "report-case":
-                    System.out.println(eAPM.reportCase(Integer.parseInt(params[0])));
+                    System.out.println(cM.reportCase(Integer.parseInt(params[0])));
                     break;
             }
         }

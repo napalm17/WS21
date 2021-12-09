@@ -2,12 +2,12 @@ package kit.edu.informatik.u3.b.management;
 import kit.edu.informatik.u3.b.listItems.Event;
 import kit.edu.informatik.u3.b.listItems.Person;
 
-public class EventAndPersonManagement {
+public class CovidManagement {
     EventManagement eventManagement;
     PersonManagement personManagement;
     DateManagement dateManagement;
 
-    public EventAndPersonManagement(EventManagement e, PersonManagement p, DateManagement d) {
+    public CovidManagement(EventManagement e, PersonManagement p, DateManagement d) {
         this.eventManagement = e;
         this.personManagement = p;
         this.dateManagement = d;
