@@ -11,12 +11,15 @@ public class EventAndPersonManagement {
         this.eventManagement = e;
         this.personManagement = p;
         this.dateManagement = d;
+
     }
     // B.2.7
     public String increaseSecurity (int eventId, int personId) {
         Event e = this.eventManagement.getEventfromId(eventId);
+        Person p = this.personManagement.getPersonFromId(personId);
         if (canAddToEvent(eventId, personId)) {
             e.addParticipant(personId);
+            p.addEvent(eventId);
             return "OK";
         }
         return "Could not add security";
@@ -43,13 +46,15 @@ public class EventAndPersonManagement {
         return result;
     }
     private String getContacted(int exposedPersonId, Person p) {
-        Integer[] allEvents = p.getJoinedEvents();
+        Integer[] joinedEvents = p.getJoinedEvents();
         String result = "";
         int i = 0;
         int contacts = 0;
         final int DANGER_RANGE = 14;
-        while (allEvents[i] != null) {
-            Event e = this.eventManagement.getEventfromId(allEvents[i]);
+        while (joinedEvents[i] != null) {
+            Event e = this.eventManagement.getEventfromId(joinedEvents[i]);
+            Person lecturerOfEvent = this.personManagement.getPersonFromId(e.getParticipants()[0]);
+            lecturerOfEvent.addEvent(joinedEvents[i]);
             boolean isIn14DayRange = this.dateManagement.getCurrentDate() - DANGER_RANGE <= e.getDate() && e.getDate() <= this.dateManagement.getCurrentDate();
             boolean hadExposedPerson = Utility.isInEvent(exposedPersonId, e.getParticipants());
             if (isIn14DayRange && hadExposedPerson) {
@@ -59,7 +64,7 @@ public class EventAndPersonManagement {
             i++;
         }
         if (!(result.equals(""))) {
-            return result + " [" + contacts + " ]\n";
+            return result + " [" + contacts + "]\n";
         }
         return "";
     }

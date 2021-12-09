@@ -12,8 +12,8 @@ public class EventManagement {
         this.last = null;
     }
     // B.2.6
-    public int addEvent (int personId, String location, int capacity, String regulationType, int date) {
-        Event event = new Event(EventManagement.EVENT_INDEX, personId, location, capacity, regulationType.equals("3G"), date);
+    public int addEvent (int lecturerId, String location, int capacity, String regulationType, int date) {
+        Event event = new Event(EventManagement.EVENT_INDEX, lecturerId, location, capacity, regulationType.equals("3G"), date);
         ListCell newListCell = new ListCell(null, event, this.last, null);
         if (this.first == null) {
             this.first = newListCell;
