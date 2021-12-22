@@ -1,4 +1,4 @@
-package kit.edu.informatik.u3.b.Management;
+package kit.edu.informatik.u3.b.management;
 
 public class DateManagement {
 

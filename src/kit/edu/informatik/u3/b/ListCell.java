@@ -1,6 +1,6 @@
 package kit.edu.informatik.u3.b;
-import kit.edu.informatik.u3.b.ListItems.Event;
-import kit.edu.informatik.u3.b.ListItems.Person;
+import kit.edu.informatik.u3.b.listItems.Event;
+import kit.edu.informatik.u3.b.listItems.Person;
 
 public class ListCell {
     public Person person;

@@ -1,6 +1,6 @@
-package kit.edu.informatik.u3.b.Management;
+package kit.edu.informatik.u3.b.management;
 import kit.edu.informatik.u3.b.ListCell;
-import kit.edu.informatik.u3.b.ListItems.Person;
+import kit.edu.informatik.u3.b.listItems.Person;
 
 public class PersonManagement {
     private static int PERSON_INDEX = 0;
