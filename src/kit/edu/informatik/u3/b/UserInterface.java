@@ -15,7 +15,7 @@ public final class UserInterface {
         Scanner sc = new Scanner(System.in);
         DateManagement dM = new DateManagement();
         PersonManagement pM = new PersonManagement();
-        EventManagement eM = new EventManagement();
+        EventManagement eM = new EventManagement(pM);
         CovidManagement eAPM = new CovidManagement(eM, pM, dM);
 
         while (true) {

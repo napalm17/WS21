@@ -18,7 +18,7 @@ public class Person {
     private Role role;
     private int proofdate;
     private CovidProof covidProof;
-    private Integer[] joinedEvents;
+    private int[] joinedEvents;
 
     public Person(int id, String firstName, String lastName, Role role) {
         this.firstName = firstName;
@@ -26,7 +26,10 @@ public class Person {
         this.role = role;
         this.id = id;
         this.covidProof = CovidProof.NO_CERTIFICATE;
-        this.joinedEvents = new Integer[1000];
+        this.joinedEvents = new int[1001];
+        for (int i = 0; i < joinedEvents.length; i++) {
+            this.joinedEvents[i] = -1;
+        }
     }
     public int getId () {
         return this.id;
@@ -45,18 +48,19 @@ public class Person {
     public String getProoftype () {
         return this.covidProof.name();
     }
+
     public int getProofdate () {
         return this.proofdate;
     }
 
     public void addEvent(int eventId) {
         int index = 0;
-        while (joinedEvents[index] != null) {
+        while (joinedEvents[index] != -1) {
             index++;
         }
         joinedEvents[index] = eventId;
     }
-    public Integer[] getJoinedEvents() {
+    public int[] getJoinedEvents() {
         return this.joinedEvents;
     }
 }

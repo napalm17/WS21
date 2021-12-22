@@ -46,7 +46,10 @@ public class PersonManagement {
             }
             c = c.next;
         }
-        return result;
+        if (role.equals("security") && result.equals("")) {
+            return "No security in the system";
+        }
+        return result.substring(0, result.length() -1);
     }
     // helper method
     public Person getPersonFromId(int personId) {

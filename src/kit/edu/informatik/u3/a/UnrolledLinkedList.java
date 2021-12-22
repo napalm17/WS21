@@ -9,10 +9,10 @@ public class UnrolledLinkedList {
     private final int arraySize;
 
     private class ListCell {
-        int[] array;
-        ListCell prev;
-        ListCell next;
-        ListCell(int[] a, ListCell p, ListCell n) {
+        private int[] array;
+        private ListCell prev;
+        private ListCell next;
+        private ListCell(int[] a, ListCell p, ListCell n) {
             this.array = a;
             this.prev = p;
             this.next = n;
