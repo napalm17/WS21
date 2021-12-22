@@ -1,11 +1,9 @@
 package kit.edu.informatik.u4.b;
 
 import java.util.Scanner;
-
 import static java.lang.Integer.parseInt;
 
 public class UserInterface {
-
     public void run() {
         final long DEFAULT_SEED = 0;
         Scanner sc = new Scanner(System.in);
@@ -32,7 +30,7 @@ public class UserInterface {
                     System.out.print(game.discard(parseInt(params[1]) - 1, params[2]));
                     break;
                 case "pick":
-                    System.out.print(game.pick(parseInt(params[1]) - 1));
+                    game.pick(parseInt(params[1]) - 1);
                     break;
             }
         }

@@ -1,8 +1,8 @@
 package kit.edu.informatik.u3.b;
-import kit.edu.informatik.u3.b.Management.EventManagement;
-import kit.edu.informatik.u3.b.Management.DateManagement;
-import kit.edu.informatik.u3.b.Management.EventAndPersonManagement;
-import kit.edu.informatik.u3.b.Management.PersonManagement;
+import kit.edu.informatik.u3.b.management.EventManagement;
+import kit.edu.informatik.u3.b.management.DateManagement;
+import kit.edu.informatik.u3.b.management.CovidManagement;
+import kit.edu.informatik.u3.b.management.PersonManagement;
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
@@ -16,7 +16,7 @@ public final class UserInterface {
         DateManagement dM = new DateManagement();
         PersonManagement pM = new PersonManagement();
         EventManagement eM = new EventManagement();
-        EventAndPersonManagement eAPM = new EventAndPersonManagement(eM, pM, dM);
+        CovidManagement eAPM = new CovidManagement(eM, pM, dM);
 
         while (true) {
             String[] input = sc.nextLine().split(" ");

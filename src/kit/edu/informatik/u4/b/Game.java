@@ -23,7 +23,7 @@ public class Game {
         this.deckList = this.deal.getDeck();
         this.iterator = this.deckList.iterator();
         this.players = this.deal.getPlayers();
-        this.openCard = popFirstCard();
+        this.openCard = popNewCard();
         this.isGameOver = false;
 
     }
@@ -32,42 +32,44 @@ public class Game {
     }
 
     public String showHand(int playerNo) {
-        return this.players.get(playerNo).toString();
+        String hand = this.players.get(playerNo).toString();
+        return hand.substring(1, hand.length() - 1).replaceAll(" ", "");
     }
 
     public String discard(int playerNo, String card) {
-
         if (canBeStacked(card) && this.players.get(playerNo).contains(card)) {
             this.openCard = card;
             this.players.get(playerNo).remove(card);
-            if (this.players.get(playerNo).size() == 0) {
+            if (this.players.get(playerNo).isEmpty()) {
                 this.isGameOver = true;
-                return "Game over : Player < Nummer > has won .";
+                return "Game over : Player " + playerNo + " has won .";
             }
-            System.out.println(this.players);
             return "";
         }
-        return "Error, " + card + " cannot be stacked on" + this.openCard + ".";
+        return "Error, " + card + " cannot be stacked on " + this.openCard + ".";
     }
 
-    public String pick(int playerNo) {
-        String newCard = popFirstCard();
+    public void pick(int playerNo) {
+        String newCard = popNewCard();
         this.players.get(playerNo).add(newCard);
-        return "";
     }
+
     public boolean isGameOver() {
         return this.isGameOver;
     }
     private boolean canBeStacked(String card) {
-        String[] c = card.split("");
-        String[] oC = this.openCard.split("");
-        System.out.println(c[0] + c[1]);
-        System.out.println(oC[0] + oC[1]);
-        return c[0].equals(oC[0]) || c[1].equals(oC[1]);
+        boolean areSymbolsSame = splitCard(card)[0].equals(splitCard(this.openCard)[0]);
+        boolean areSuitsSame = splitCard(card)[1].equals(splitCard(this.openCard)[1]);
+        return areSymbolsSame || areSuitsSame;
     }
-    private String popFirstCard() {
+
+    private String[] splitCard(String card) {
+        return new String[]{card.substring(0, card.length() - 1), card.substring(card.length() - 1)};
+    }
+
+    private String popNewCard() {
         String firstCard = this.deckList.remove(0);
-        if (this.deckList.size() == 0) {
+        if (this.deckList.isEmpty()) {
             System.out.print("Game over: Draw.\n");
             this.isGameOver = true;
         }
