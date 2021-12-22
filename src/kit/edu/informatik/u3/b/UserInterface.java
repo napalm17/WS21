@@ -17,7 +17,6 @@ public final class UserInterface {
         PersonManagement pM = new PersonManagement();
         EventManagement eM = new EventManagement();
         EventAndPersonManagement eAPM = new EventAndPersonManagement(eM, pM, dM);
-
         while (true) {
             String[] input = sc.nextLine().split(" ");
             String command = input[0];
