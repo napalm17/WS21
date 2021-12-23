@@ -1,6 +1,7 @@
 package kit.edu.informatik.u4.b;
 
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -9,16 +10,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @version 1.0
  */
 public class Deal {
-    private CopyOnWriteArrayList<CopyOnWriteArrayList<String>> players;
-    private CopyOnWriteArrayList<String> deck;
+    private ArrayList<ArrayList<String>> players;
+    private ArrayList<String> deck;
 
     /**
      * Constructor that will help us initialize an instance of the Deal class
      * with a given shuffled deck and arrayList of players.
      */
-    public Deal(CopyOnWriteArrayList<String> deck) {
+    public Deal(ArrayList<String> deck) {
         this.deck = deck;
-        this.players = new CopyOnWriteArrayList<>();
+        this.players = new ArrayList<>();
     }
 
     /**
@@ -27,11 +28,12 @@ public class Deal {
      */
     public void dealCards() {
         for (int i = 0; i < 4; i++) { // goes through player indexes
-            this.players.add(new CopyOnWriteArrayList<>());
+            this.players.add(new ArrayList<>());
             for (int j = 0; j < 5; j++) { // goes through five card indexes
                 String card = this.deck.remove(0);
                 this.players.get(i).add(card);
             }
+            Collections.sort(this.players.get(i));
         }
     }
 
@@ -40,7 +42,7 @@ public class Deal {
      * @return an ArrayList that contains 4 ArrayLists
      * which contain the respective player's cards as String variables.
      */
-    public CopyOnWriteArrayList<CopyOnWriteArrayList<String>> getPlayers() {
+    public ArrayList<ArrayList<String>> getPlayers() {
         return this.players;
     }
 
@@ -48,7 +50,7 @@ public class Deal {
      * Getter method for the deck of remaining cards.
      * @return An ArrayList that contains the remaining cards in the deck.
      */
-    public CopyOnWriteArrayList<String> getDeck() {
+    public ArrayList<String> getDeck() {
         return this.deck;
     }
 }

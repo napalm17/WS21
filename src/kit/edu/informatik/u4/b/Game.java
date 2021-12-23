@@ -1,7 +1,7 @@
 package kit.edu.informatik.u4.b;
-import java.util.Iterator;
-import java.util.concurrent.CopyOnWriteArrayList;
 
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Models a game of Mau-Mau with its possible actions:
@@ -10,11 +10,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class Game {
 
+    private int playerOnTurn; // Game begins with player 1.
     private Deal deal;
     private Deck deck;
     private String openCard; // models the open card on the table
-    private CopyOnWriteArrayList<CopyOnWriteArrayList<String>> players;
-    private final CopyOnWriteArrayList<String> deckList; // an ArrayList that contains undealt cards.
+    private ArrayList<ArrayList<String>> players;
+    private final ArrayList<String> deckList; // an ArrayList that contains undealt cards.
     private boolean isGameOver;
 
     /**
@@ -22,6 +23,7 @@ public class Game {
      * with a new shuffled deck and player hands.
      */
     public Game(long seed) {
+        this.playerOnTurn = 1;
         this.deck = new Deck();
         this.deal = new Deal(this.deck.shuffle(seed));
         this.deal.dealCards();
@@ -62,22 +64,31 @@ public class Game {
         if (canBeStacked(card) && this.players.get(playerNo).contains(card)) {
             this.openCard = card;
             this.players.get(playerNo).remove(card);
+            toNextPlayer();
             if (this.players.get(playerNo).isEmpty()) {
                 this.isGameOver = true;
-                return "Game over : Player " + playerNo + " has won .";
+                return "Game over: Player " + playerNo + " has won.\n";
             }
             return "";
         }
-        return "Error, " + card + " cannot be stacked on " + this.openCard + ".";
+        return "Error, " + card + " cannot be stacked on " + this.openCard + ".\n";
     }
 
     /**
-     * B.4.6: Picks a card from the top of the deck for the given player.
+     * B.4.6: Picks a card from the top of the deck for the given player if they don't have any cards to discard.
      * @param playerNo Index of the player who must pick a card.
      */
-    public void pick(int playerNo) {
-        String newCard = popNewCard();
-        this.players.get(playerNo).add(newCard);
+    public String pick(int playerNo) {
+        if (!(hasCardToDiscard(playerNo))) {
+            toNextPlayer();
+            String newCard = popNewCard();
+            this.players.get(playerNo).add(newCard);
+            Collections.sort(this.players.get(playerNo));
+            return "";
+        }
+        else {
+            return "Error, the player already has a card that they can stack.\n";
+        }
     }
 
     /**
@@ -86,6 +97,25 @@ public class Game {
      */
     public boolean isGameOver() {
         return this.isGameOver;
+    }
+
+    /**
+     * Accessor method for the attribute playerOnTurn.
+     * @return Index of the player who must play.
+     */
+    public int getPlayerOnTurn() {
+        return this.playerOnTurn;
+    }
+
+    /**
+     * A helper method that increments the index of the player on turn.
+     */
+    private void toNextPlayer() {
+        if (this.playerOnTurn == 4) {
+            this.playerOnTurn = 1;
+        } else {
+            this.playerOnTurn++;
+        }
     }
 
     /**
@@ -98,6 +128,21 @@ public class Game {
         boolean areSymbolsSame = splitCard(card)[0].equals(splitCard(this.openCard)[0]);
         boolean areSuitsSame = splitCard(card)[1].equals(splitCard(this.openCard)[1]);
         return areSymbolsSame || areSuitsSame;
+    }
+
+    /**
+     * A private helper method a player has a card that they can discard
+     * @param playerNo Index of the player who wants to pick a card.
+     * @return Whether the player already has a card that can be discarded.
+     */
+    private boolean hasCardToDiscard(int playerNo) {
+        ArrayList<String> player = this.players.get(playerNo);
+        for (int i = 0; i < player.size() ; i++) {
+            if (canBeStacked(player.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
